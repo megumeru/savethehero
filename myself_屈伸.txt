@@ -5,9 +5,15 @@ static var my_updown_mergin		= 0.05;
 //static var gravity_accel		= -9.80665; /* FIXME: 動作テスト用の仮値なので宇宙空間やエミュでは動かない。値を初期化する処理が必要。 */
 static var gravity_accel		= Input.acceleration.y;	// TODO: この表記はいまいち正確ではない。数秒間計測し、その平均にするべきだ。
 static var my_updown_time		= 0;
+static var my_life				= 5;
 
 function Update ()
 {
+	EditorGUI.ProgressBar(Rect(3,45,position.width-6,20),my_life/5.0, "Life");
+	
+	// 前進
+	transform.Translate(0, 0, my_speed);	
+	
 	// 加速度センサ
 	var my_accel_y = Input.acceleration.y - gravity_accel;
 	
@@ -29,15 +35,23 @@ function Update ()
 		}
 	}
 	
-	// TODO: ゲームクリア判定。
-	//		 プレイヤーが特定の距離まで進んだらクリアとする。
-	//		 シーン遷移でゲームクリア画面へ飛ばす。
+	// ====================================================================================================
+	// ゲームクリア判定。
+	// プレイヤーがz座標において2000まで進んだらクリアとする。
+	// todo: 見えないオブジェクトにぶつかったらクリアの方が後々便利なのだが・・・
+	if (transform.Position.z > 2000)
+	{
+		// ゲームクリア
+		Application.Load("goal");
+	}
 }
 
 function OnTriggerEnter (collider : Collider)	//	当たった
 {
-	// TODO: 体力ゲージの減少
-	// TODO: ifでゲームオーバーに遷移 ( こちらは別ソースに移るかもしれない )
+	// 体力の減少
+	--my_life;
+	
+	// TODO: ifでゲームオーバーに遷移
 	
 	// 当たり判定の削除
 	collider.isTrigger = false;
