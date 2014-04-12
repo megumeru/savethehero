@@ -1,7 +1,9 @@
-const my_speed         = 1;
-const my_updown_mergin = 0.05;
-const gravity_accel    = 9.80665; /* FIXME: テスト用の仮値なので宇宙空間では動かない。値を初期化する処理が必要。 */
-var my_updown_time     = 0;
+# pragma strict
+
+var my_speed         = 1;
+var my_updown_mergin = 0.05;
+var gravity_accel    = 0;//9.80665; /* FIXME: テスト用の仮値なので宇宙空間では動かない。値を初期化する処理が必要。 */
+var my_updown_time   = 0;
 
 function Update ()
 {
