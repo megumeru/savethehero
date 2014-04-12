@@ -1,0 +1,8 @@
+#pragma strict
+
+function OnTriggerEnter(collider : Collider)	//	当たった
+{
+	// TODO: 体力ゲージの減少
+	// TODO: ifでゲームオーバーに遷移 ( こちらは別ソースに移るかもしれない )
+	// TODO: 当たり判定の削除
+}
