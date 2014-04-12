@@ -1,4 +1,4 @@
-# pragma strict
+#pragma strict
 
 var my_speed         = 1;
 var my_updown_mergin = 0.05;
@@ -27,4 +27,17 @@ function Update ()
 			transform.localPosition = Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
 		}
 	}
+	
+	// TODO: ゲームクリア判定。
+	//		 プレイヤーが特定の距離まで進んだらクリアとする。
+	//		 シーン遷移でゲームクリア画面へ飛ばす。
+}
+
+function OnTriggerEnter (collider : Collider)	//	当たった
+{
+	// TODO: 体力ゲージの減少
+	// TODO: ifでゲームオーバーに遷移 ( こちらは別ソースに移るかもしれない )
+	
+	// 当たり判定の削除
+	collider.isTrigger = false;
 }
