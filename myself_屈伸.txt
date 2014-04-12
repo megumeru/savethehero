@@ -1,0 +1,24 @@
+const my_speed         = 1;
+const my_updown_mergin = 0.05;
+const gravity_accel    = 9.80665; /* FIXME: テスト用の仮値なので宇宙空間では動かない。値を初期化する処理が必要。 */
+var my_updown_time     = 0;
+
+function Update ()
+{
+	// 加速度センサ
+	var my_accel_y = Input.acceleration.y - gravity_accel;
+	
+	if (my_updown_time > 0)	// しゃがんでる
+	{
+		transform.localPosition = Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+		--my_updown_time;
+	}
+	else					// 立ってる
+	{
+		if (my_accel_y < -my_updown_mergin)	// しゃがもうとしている
+		{
+			// しゃがむ
+			my_updown_time = 100;
+		}
+	}
+}
