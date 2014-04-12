@@ -2,7 +2,7 @@
 
 var my_speed         = 1;
 var my_updown_mergin = 0.05;
-var gravity_accel    = 0;//9.80665; /* FIXME: テスト用の仮値なので宇宙空間では動かない。値を初期化する処理が必要。 */
+var gravity_accel    = -9.80665; /* FIXME: テスト用の仮値なので宇宙空間では動かない。値を初期化する処理が必要。 */
 var my_updown_time   = 0;
 
 function Update ()
@@ -12,8 +12,11 @@ function Update ()
 	
 	if (my_updown_time > 0)	// しゃがんでる
 	{
-		transform.localPosition = Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
 		--my_updown_time;
+		if (my_updown_time == 0)
+		{
+			transform.localPosition = Vector3(transform.localPosition.x, transform.localPosition.y + 10, transform.localPosition.z);
+		}
 	}
 	else					// 立ってる
 	{
@@ -21,6 +24,7 @@ function Update ()
 		{
 			// しゃがむ
 			my_updown_time = 100;
+			transform.localPosition = Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
 		}
 	}
 }
