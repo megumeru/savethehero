@@ -1,9 +1,10 @@
 #pragma strict
 
-var my_speed         = 1;
-var my_updown_mergin = 0.05;
-var gravity_accel    = -9.80665; /* FIXME: テスト用の仮値なので宇宙空間では動かない。値を初期化する処理が必要。 */
-var my_updown_time   = 0;
+var my_speed			= 1;
+var my_updown_mergin	= 0.05;
+//var gravity_accel		= -9.80665; /* FIXME: 動作テスト用の仮値なので宇宙空間やエミュでは動かない。値を初期化する処理が必要。 */
+var gravity_accel		= Input.acceleration.y;	// TODO: この表記はいまいち正確ではない。数秒間計測し、その平均にするべきだ。
+var my_updown_time		= 0;
 
 function Update ()
 {
